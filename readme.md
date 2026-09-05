@@ -27,7 +27,7 @@ Student Tracker is a comprehensive Student Management System designed for school
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18 or later)
+- [Node.js](https://nodejs.org/) (v24.20.0 LTS or later)
 - [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 
 ### Local Development

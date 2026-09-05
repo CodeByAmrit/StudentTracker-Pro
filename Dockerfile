@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:24-alpine AS builder
+FROM node:24.20.0-alpine AS builder
 
 WORKDIR /school
 
@@ -16,7 +16,7 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 # Stage 2: Production image
-FROM node:24-alpine
+FROM node:24.20.0-alpine
 
 WORKDIR /school
 
