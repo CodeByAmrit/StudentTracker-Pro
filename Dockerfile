@@ -26,25 +26,22 @@ ENV NODE_ENV=production
 RUN apk add --no-cache libc6-compat
 
 # Copy production dependencies and built files
-COPY --from=builder /school/package*.json ./
-COPY --from=builder /school/node_modules ./node_modules
-COPY --from=builder /school/bin ./bin
-COPY --from=builder /school/app.js ./
-COPY --from=builder /school/routes ./routes
-COPY --from=builder /school/controllers ./controllers
-COPY --from=builder /school/middleware ./middleware
-COPY --from=builder /school/models ./models
-COPY --from=builder /school/services ./services
-COPY --from=builder /school/views ./views
-COPY --from=builder /school/public ./public
-COPY --from=builder /school/config ./config
-COPY --from=builder /school/template ./template
-
 # Create non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# Fix permissions for runtime
-RUN chown -R appuser:appgroup /school
+COPY --chown=appuser:appgroup --from=builder /school/package*.json ./
+COPY --chown=appuser:appgroup --from=builder /school/node_modules ./node_modules
+COPY --chown=appuser:appgroup --from=builder /school/bin ./bin
+COPY --chown=appuser:appgroup --from=builder /school/app.js ./
+COPY --chown=appuser:appgroup --from=builder /school/routes ./routes
+COPY --chown=appuser:appgroup --from=builder /school/controllers ./controllers
+COPY --chown=appuser:appgroup --from=builder /school/middleware ./middleware
+COPY --chown=appuser:appgroup --from=builder /school/models ./models
+COPY --chown=appuser:appgroup --from=builder /school/services ./services
+COPY --chown=appuser:appgroup --from=builder /school/views ./views
+COPY --chown=appuser:appgroup --from=builder /school/public ./public
+COPY --chown=appuser:appgroup --from=builder /school/config ./config
+COPY --chown=appuser:appgroup --from=builder /school/template ./template
 
 USER appuser
 
